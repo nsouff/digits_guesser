@@ -1,5 +1,6 @@
 import tensorflow as tf
 import os
+import numpy as np
 class Model():
     def __init__(self, filepath='model.h5'):
         self.filepath = filepath
@@ -24,3 +25,7 @@ class Model():
         self.model.save(self.filepath)
     def is_saved(self):
         return os.path.exists(self.filepath)
+    def predict(self, pixels):
+        prediction = self.model.predict([pixels])
+        print(prediction)
+        return np.argmax(prediction[0])

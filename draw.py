@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
-
+from model import Model
 white = (255,255,255)
 black = (0,0,0)
 
@@ -18,13 +18,15 @@ class Grid():
                     y = j * pixel_size
                     pygame.draw.rect(window, black, (x, y, pixel_size, pixel_size))
     def update(self, mouse, window_size):
-        x = mouse[0] // 20
-        y = mouse[1] // 20
+        x = mouse[0] // (window_size // 28)
+        y = mouse[1] // (window_size // 28)
         self.pixels[x][y] = 1
+
 
 def main():
 
     grid = Grid()
+    model = Model()
     size = 560
     window = pygame.display.set_mode((size,size))
     running = 1
@@ -33,11 +35,15 @@ def main():
                 if event.type == pygame.QUIT:
                     running = 0
                 elif event.type == pygame.KEYDOWN and event.key == K_SPACE:
-                    pass
+                    predict = model.predict(grid.pixels)
+                    print(predict)
+                    grid = Grid()
                 elif pygame.mouse.get_pressed()[0] == True:
                     grid.update(pygame.mouse.get_pos(), size)
         grid.draw(window)
         pygame.display.update()
+    if not model.is_saved():
+        model.save()
 if __name__ == '__main__':
     pygame.init()
     main()
