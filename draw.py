@@ -1,6 +1,6 @@
 import pygame
 from pygame.locals import *
-from model import Model
+from train import Model
 import numpy as np
 white = (255,255,255)
 black = (0,0,0)
