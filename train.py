@@ -23,13 +23,11 @@ class Model():
 
             self.model.fit(x_train, y_train, epochs=10)
             self.model.evaluate(x_test, y_test)
+            self.save()
     def save(self):
         self.model.save(self.filepath)
-    def is_saved(self):
-        return os.path.exists(self.filepath)
     def predict(self, pixels):
         prediction = self.model.predict([pixels])
-        print(prediction[0])
         return np.argmax(prediction[0])
     def examples(self, n=5):
         predictions = self.model.predict(self.x_test)
@@ -38,5 +36,6 @@ class Model():
             print("Prediction", np.argmax(predictions[i]), ", actual:", self.y_test[i])
             plt.show()
 if __name__ == '__main__':
-    m = Model()
-    m.save()
+    if os.path.exists('model.h5'):
+        os.remove('model.h5')
+    Model()

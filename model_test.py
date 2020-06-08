@@ -6,5 +6,3 @@ if len(sys.argv) > 1:
     model.examples(int(sys.argv[1]))
 else:
     model.examples()
-if not model.is_saved():
-    model.save()

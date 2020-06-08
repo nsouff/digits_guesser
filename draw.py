@@ -54,8 +54,6 @@ def main():
                     grid.update(pygame.mouse.get_pos(), size)
         grid.draw(window)
         pygame.display.update()
-    if not model.is_saved():
-        model.save()
 if __name__ == '__main__':
     pygame.init()
     main()
