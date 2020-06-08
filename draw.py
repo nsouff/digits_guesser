@@ -2,6 +2,8 @@ import pygame
 from pygame.locals import *
 from train import Model
 import numpy as np
+from tkinter import *
+import tkinter.messagebox as msg
 white = (255,255,255)
 black = (0,0,0)
 
@@ -43,7 +45,10 @@ def main():
                 elif event.type == pygame.KEYDOWN and event.key == K_SPACE:
                     im = np.array(grid.pixels).T.tolist()
                     predict = model.predict(im)
-                    print(predict)
+                    popup = Tk()
+                    popup.withdraw()
+                    msg.showinfo("Prediction", "The model predicted this number is a " + str(predict))
+                    popup.destroy()
                     grid = Grid()
                 elif pygame.mouse.get_pressed()[0] == True:
                     grid.update(pygame.mouse.get_pos(), size)

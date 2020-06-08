@@ -29,7 +29,7 @@ class Model():
         return os.path.exists(self.filepath)
     def predict(self, pixels):
         prediction = self.model.predict([pixels])
-        print(prediction)
+        print(prediction[0])
         return np.argmax(prediction[0])
     def examples(self, n=5):
         predictions = self.model.predict(self.x_test)
