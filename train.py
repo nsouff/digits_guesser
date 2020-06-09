@@ -35,6 +35,8 @@ class Model():
             plt.imshow(self.x_test[i], cmap='binary')
             print("Prediction", np.argmax(predictions[i]), ", actual:", self.y_test[i])
             plt.show()
+    def evaluate(self):
+        self.model.evaluate(self.x_test, self.y_test)
 if __name__ == '__main__':
     if os.path.exists('model.h5'):
         os.remove('model.h5')
