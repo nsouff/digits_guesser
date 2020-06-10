@@ -37,7 +37,7 @@ class Grid():
         self.pixels[x][y] = 1
         self.update_diag(x, y)
         self.update_orth(x, y)
-            def in_range(x, y):
+    def in_range(x, y):
         return x < 28 and y < 28 and x >= 0 and y >=0
     def update_diag(self, x, y):
         for i in range(x-1, x+2, 2):
